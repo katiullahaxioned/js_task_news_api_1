@@ -82,6 +82,24 @@ sub { bottom: -.25em; }
 .cf { *zoom: 1; }
 
 /*for all*/
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  --clr-blue: #2c3e50;
+  --clr-grey: #7f8c8d;
+  --clr-red1: #e74c3c;
+  --clr-red2: #c0392b;
+  --clr-white: #fff;
+  --clr-black: #111;
+}
+
 body {
   box-sizing: border-box;
   font-family: sans-serif;
@@ -90,11 +108,24 @@ body {
 a { 
   display: inline-block;
   text-decoration: none; 
+  transition: all .3s;
 }
 
 li {
   display: inline-block;
   list-style-type: none;
+}
+
+span { display: inline-block; }
+
+input[type] {
+  border: none;
+  display: inline-block;
+  outline: none;
+}
+
+::first-letter {
+  text-transform: uppercase;
 }
 
 /*for wrapper*/
@@ -107,10 +138,46 @@ li {
   Header styling starts here
 =================================*/
 
+header .wrapper {
+  width: 100%;
+  padding: 15px 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--clr-blue);
+}
 
+.logo a {
+  color: var(--clr-red1);
+  font-size: 32px;
+  font-weight: 600;
+  text-shadow: 1px 1px 1px var(--clr-white);
+  text-transform: uppercase;
+}
 
+.header-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+.header-form input[type] {
+  padding: 8px;
+  color: var(--clr-white);
+  font-size: 15px;
+  text-transform: capitalize;
+}
 
+.header-form input[type='text'] {
+  border-radius: 8px 0 0 8px;
+  background-color: var(--clr-black);
+}
+
+.header-form input[type='submit'] {
+  border-radius: 0 8px 8px 0;
+  background-color: var(--clr-red2);
+  transition: all .3s;
+}
 
 /*=================================
   Header styling ends here
@@ -120,12 +187,71 @@ li {
   main styling starts here
 =================================*/
 
+/* articles section starts here */
 
+.articles .wrapper {
+  padding: 30px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
 
+.article-card {
+  padding: 15px;
+  border-radius: 5px;
+  flex: 1 0 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: var(--clr-blue);
+  color: var(--clr-white);
+}
 
+.article-card a { color: var(--clr-white); }
+.article-author { font-size: 15px; }
 
+.article-title {
+  font-size: 20px;
+  font-weight: 600;
+}
 
+.article-card figure {
+  max-width: 300px;
+  width: 100%;
+  height: 190px;
+}
 
+.article-card figure img { height: 100%; }
+.article-publishedAt { font-size: 13px; }
+
+/* articles section ends here */
+
+/* articles-control section starts here */
+
+.articles-control .wrapper { padding: 15px 0; }
+
+.control-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.control {
+  padding: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  transition: all .3s;
+}
+
+.control.active {
+  color: var(--clr-red2);
+  text-decoration: underline;
+}
+
+/* articles-control section ends here */
 
 /*=================================
   main styling ends here
@@ -135,20 +261,52 @@ li {
   footer styling starts here
 =================================*/ 
 
+footer .wrapper {
+  width: 100%;
+  padding: 20px 0;
+  background-color: var(--clr-black);
+}
 
-
-
-
-
+footer h3 {
+  color: var(--clr-white);
+  font-size: 32px;
+  font-weight: 600;
+  text-align: center;
+  text-transform: capitalize;
+}
 
  /*=================================
   footer styling ends here
 =================================*/ 
 
 /*media query starts*/
-/*media query for 995px starts here*/
-@media only screen and (max-width: 995px) {
 
+/*media query for min-width: 1024px starts here*/
+@media only screen and (min-width: 1024px) {
 
+  .header-form input[type='submit']:hover { background-color: var(--clr-red1); }
+
+  .article-card a:hover {
+    text-decoration: underline;
+    color: var(--clr-red2);
+  }
+
+  .control:hover {
+    color: var(--clr-red2);
+    text-decoration: underline;
+  }
+
+} 
+
+/*media query for max-width: 767px starts here*/
+@media only screen and (max-width: 767px) {
+
+  header .wrapper { padding: 15px 2%; }
+  .logo a { font-size: 26px; }
+
+  .articles .wrapper,
+  .articles-control .wrapper {
+    width: 96%;
+  }
 
 }  
