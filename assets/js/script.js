@@ -66,7 +66,30 @@ controls.forEach(function (control, index) {
 
     control.classList.add("active");
     articlesWrapper.innerHTML = "";
-		
+
     fetchNews(numOne, numTwo);
+  });
+});
+
+// news by input search
+var searchInput = form.newsSearch;
+
+form.addEventListener("keyup", function (e) {
+  var inputVal = e.target.value.trim().toLowerCase();
+  var articleCard = document.querySelectorAll(".article-card");
+
+  articleCard.forEach(function (card) {
+    var cardTitleText = card
+      .querySelector(".article-title")
+      .innerText.toLowerCase();
+    var cardDescText = card
+      .querySelector(".article-description")
+      .innerText.toLowerCase();
+
+    if (cardTitleText.includes(inputVal) || cardDescText.includes(inputVal)) {
+      card.classList.remove("display-none");
+    } else {
+      card.classList.add("display-none");
+    }
   });
 });
