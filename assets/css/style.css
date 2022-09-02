@@ -209,6 +209,7 @@ header .wrapper {
   color: var(--clr-white);
 }
 
+.display-none { display: none; }
 .article-card a { color: var(--clr-white); }
 .article-author { font-size: 15px; }
 
